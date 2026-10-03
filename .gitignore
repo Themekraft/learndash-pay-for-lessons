@@ -1,0 +1,10 @@
+.DS_Store
+node_modules/
+
+# Local secrets — keep .env.example tracked.
+.env*
+!.env.example
+
+# Build artefacts produced by the .tk Robo release flow.
+.tk/release/
+.tk/.tk_svn/

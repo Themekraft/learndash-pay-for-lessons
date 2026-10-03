@@ -1,0 +1,17 @@
+{
+  "name": "themekraft/learndash-pay-for-lessons",
+  "description": "LearnDash Pay for Lesson enables you to sell LearnDash Lessons using Woocommerce.",
+  "type": "wordpress-plugin",
+  "keywords": [
+    "learndash",
+    "woocommerce",
+    "lessons"
+  ],
+  "homepage": "https://themekraft.com/",
+  "license": "GPLv2 or later",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "freemius/wordpress-sdk": "^2.13.1"
+  }
+}
