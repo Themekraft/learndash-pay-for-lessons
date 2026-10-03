@@ -1,8 +1,9 @@
 === LearnDash Pay for Lesson ===
 Contributors: svenl77, themekraft, buddyforms
 Tags: learndash, woocommerce, lessons, pay for lesson, student
-Requires at least: 3.9
-Tested up to: 6.9
+Requires at least: 5.9
+Tested up to: 7.1
+Requires PHP: 7.4
 Stable tag: 1.0.4-beta.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -49,9 +50,10 @@ Activate the plugin through the 'Plugins' menu in WordPress.
 * Plugin Check: annotated the intentional `meta_key` / `meta_query` lookup in `get_course_lessons` with `phpcs:ignore` (the lookup is required to find lessons by `course_id` and the AJAX endpoint is gated on `edit_products` + nonce).
 * Cleaned up the user-facing English copy: meta-box label "Woocommece Lesson Setting" → "WooCommerce Lesson Settings", checkbox "Make As Paid" → "Mark as Paid", "Buy lesson plugin required woocommerce plugin to activate" → "LearnDash Pay for Lessons requires the WooCommerce plugin to be active.", "Plz buy previous lessons first..." → "Please buy the previous lessons first...", and several other rewritten strings for clarity.
 * Plugin Check: cleaned up second-pass scan residuals — `esc_url($question_ic)` at the three echo points in `learndash-fields.php`, `sanitize_text_field` on `$_POST['ld_lesson_active']` and on the `$_REQUEST['courses']` map, repositioned the `slow_db_query` `phpcs:disable`/`phpcs:enable` block around the multi-line `$args` array (was previously a single-line ignore that didn't cover the array body), annotated the intentional WooCommerce-textdomain reuse on the "Add to cart" string, and annotated the read-only `$_REQUEST['post']` lookup in the admin script enqueue.
-* Release tooling: bumped the shared tk_script submodule — the release flow now skips the empty-body `*.free.zip` artifact (relevant here since this plugin is premium-only and Freemius has no free counterpart).
 * Updated Freemius SDK to 2.13.1.
 * Tested up to WordPress 6.9.
+* Requires WordPress 5.9 or later and PHP 7.4 or later.
+* Tested up to WordPress 7.1.
 
 = 1.0.3 - 07 Feb 2023 =
 * Fixed issue with ajax call on lesson product page.
