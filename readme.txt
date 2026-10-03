@@ -4,7 +4,7 @@ Tags: learndash, woocommerce, lessons, pay for lesson, student
 Requires at least: 5.9
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.4-beta.5
+Stable tag: 1.0.4-beta.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
