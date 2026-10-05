@@ -4,9 +4,10 @@
 * Plugin URI: https://themekraft.com
 * Description: LearnDash Pay for Lesson enables you to sell LearnDash Lessons using Woocommerce.
 * Author: Themekraft
-* Version: 1.0.4
+* Version: 1.0.5
 * Requires at least: 5.9
 * Requires PHP: 7.4
+* WC tested up to: 11.1
 * Text Domain: learndash-pfl
 * Author URI: https://themekraft.com/
 * License: GPLv2 or later
@@ -16,6 +17,15 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+add_action(
+	'before_woocommerce_init',
+	function () {
+		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+		}
+	}
+);
 
 require_once __DIR__ . '/vendor/autoload.php';
 
