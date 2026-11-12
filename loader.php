@@ -7,6 +7,7 @@
 * Version: 1.0.5
 * Requires at least: 5.9
 * Requires PHP: 7.4
+* Requires Plugins: woocommerce, sfwd-lms
 * WC tested up to: 11.1
 * Text Domain: learndash-pfl
 * Author URI: https://themekraft.com/
@@ -68,7 +69,24 @@ if ( ! function_exists( 'dpflww_fs' ) ) {
     do_action( 'dpflww_fs_loaded' );
 }
 
-if ( in_array('woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins') ) ) && dpflww_fs()->is_paying() ) {
+/**
+ * Whether WooCommerce and LearnDash are both active.
+ *
+ * Read from the active plugin lists because LearnDash (sfwd-lms) loads after this
+ * plugin, so its classes do not exist yet when this file runs.
+ *
+ * @return bool
+ */
+function learndash_pfl_dependencies_active() {
+	$active_plugins = (array) apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) );
+	if ( is_multisite() ) {
+		$active_plugins = array_merge( $active_plugins, array_keys( (array) get_site_option( 'active_sitewide_plugins', array() ) ) );
+	}
+
+	return in_array( 'woocommerce/woocommerce.php', $active_plugins, true ) && in_array( 'sfwd-lms/sfwd_lms.php', $active_plugins, true );
+}
+
+if ( learndash_pfl_dependencies_active() && dpflww_fs()->is_paying() ) {
 
 	function set_lesson_access( $lesson_ids_ar, $user_id ) {
 	    foreach ( $lesson_ids_ar as $lesson_id ) {
@@ -180,12 +198,12 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
 			<?php
 		}
 	}
-} else {
+} elseif ( ! learndash_pfl_dependencies_active() ) {
 	
 	function general_admin_notice() {
 		printf(
 			'<div class="notice notice-warning is-dismissible"><p>%s</p></div>',
-			esc_html__( 'LearnDash Pay for Lessons requires the WooCommerce plugin to be active.', 'learndash-pfl' )
+			esc_html__( 'LearnDash Pay for Lessons requires the WooCommerce and LearnDash LMS plugins to be active.', 'learndash-pfl' )
 		);
 	}
 	add_action( 'admin_notices', 'general_admin_notice' );
