@@ -4,7 +4,7 @@ Tags: learndash, woocommerce, lessons, pay for lesson, student
 Requires at least: 5.9
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,9 @@ Upload the entire plugin folder to the /wp-content/plugins/ directory or install
 Activate the plugin through the 'Plugins' menu in WordPress.
 
 == Changelog ==
+= 1.0.6 - 18 Nov 2026 =
+* WooCommerce and LearnDash are now declared as required plugins, and the plugin shows a notice naming both when either is inactive.
+
 = 1.0.5 - 05 Oct 2026 =
 * Compatible with WooCommerce High-Performance Order Storage (HPOS).
 * Tested up to WooCommerce 11.1.
