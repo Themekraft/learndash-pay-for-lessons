@@ -20,7 +20,11 @@ function lesson_type_template() {
 
 add_filter( "woocommerce_add_cart_item_data", "lesson_product_add_on_cart_item_data", 10, 2 );
 function lesson_product_add_on_cart_item_data( $cart_item, $product_id ) {
-    $courses_ar = unserialize(get_post_meta($product_id, "_lesson_id", true));
+    $courses_ar = maybe_unserialize(get_post_meta($product_id, "_lesson_id", true));
+    // Only lesson products store lessons; implode() on anything else is a TypeError on PHP 8.
+    if (empty($courses_ar) || !is_array($courses_ar)) {
+        return $cart_item;
+    }
     $cart_item["lesson_to_buy"] = implode(",", $courses_ar);
     return $cart_item;
 }

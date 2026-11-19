@@ -60,6 +60,13 @@ function wcpt_register_lesson_type () {
 
 	class WC_Product_Lesson_Type extends WC_Product {
 
+		/**
+		 * Read by WC_Product::get_type(). Declared so PHP 8.2+ does not create it as a dynamic property.
+		 *
+		 * @var string
+		 */
+		public $product_type = 'lesson_type';
+
 		public function __construct( $product ) {
 			$this->product_type = 'lesson_type'; 
 			parent::__construct( $product );
