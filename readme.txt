@@ -6,7 +6,7 @@ Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 1.0.7
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 User a Custom Login and define the Login Redirect and Registration Link
 
