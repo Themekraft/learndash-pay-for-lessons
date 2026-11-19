@@ -310,10 +310,8 @@ function lesson__add_to_content( $content ) {
 	if ( is_user_logged_in() ) {
 		$user_id = get_current_user_id();
 
+		// Access is granted when an order completes or by an admin in the lesson settings, never by viewing the lesson.
 		$access_meta = unserialize( get_post_meta( $item_id, 'access_user_id', true ) );
-		if ( $access_meta ) {
-			set_lesson_access( array( $item_id ), $user_id );
-		}
 
 		if ( empty( $product_ids ) ) {
 			return learndash_pfl_render_lesson_alert( $paid_msg );
