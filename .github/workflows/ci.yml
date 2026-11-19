@@ -8,12 +8,11 @@ on:
 
 jobs:
   ci:
-    uses: Themekraft/release-tooling/.github/workflows/ci.yml@feat/plugin-check-skip-dependencies
+    uses: Themekraft/release-tooling/.github/workflows/ci.yml@main
     with:
       slug: learndash-pfl
       # Premium-only product, not on wordpress.org, but kept Plugin Check clean (TKT-138).
       plugin-check: true
       # LearnDash is not on wordpress.org: Plugin Check cannot install it, so it is left out of the checked copy only.
       plugin-check-skip-dependencies: sfwd-lms
-      tooling-ref: feat/plugin-check-skip-dependencies
     secrets: inherit
