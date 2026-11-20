@@ -120,7 +120,7 @@ if ( learndash_pfl_dependencies_active() && dpflww_fs()->is_paying() ) {
 
 		$courses_raw = array();
 		if ( isset( $_REQUEST['courses'] ) ) {
-			$courses_raw = wp_unslash( $_REQUEST['courses'] );
+			$courses_raw = wp_unslash( $_REQUEST['courses'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- sanitized below: split into a list, then sanitize_text_field() and absint().
 			if ( ! is_array( $courses_raw ) ) {
 				$courses_raw = array_filter( array_map( 'trim', explode( ',', (string) $courses_raw ) ) );
 			}
